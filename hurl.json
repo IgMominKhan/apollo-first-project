@@ -1,0 +1,35 @@
+POST http://localhost:5000/api/v1/student/create-student
+{
+  "student": {
+    "id": 123433692,
+    "name": {
+      "firstName": "Ig",
+      "middleName":"Momin",
+      "lastName": "Khan"
+    },
+    "gender": "male",
+    "dateOfBirth": "2013-01-01",
+    "email": "john.doe@exa.mplcom",
+    "contactNo": "136-456-7890",
+    "emergencyContactNo": "1000-654-3210",
+    "bloodGroup": "A+",
+    "presentAddress": "136 main street, cityville",
+    "permanentAddress": "469 oak avenue, townsville",
+    "guardian": {
+      "fatherName": "robert doe",
+      "fatherOccupation": "engineer",
+      "fatherContactNo": "124-222-3333",
+      "motherName": "alice doe",
+      "motherOccupation": "teacher",
+      "motherContactNo": "457-555-6666"
+    },
+    "localGuardian": {
+      "name": "jane smith",
+      "occupation": "doctor",
+      "contactNo": "790-888-9999",
+      "address": "802 pine road, villagetown"
+    },
+    "profileImg": "path/to/profile.jpg",
+    "isActive": "active"
+  }
+}
