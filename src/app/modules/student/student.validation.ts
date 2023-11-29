@@ -23,25 +23,29 @@ const localGuardianValidationSchema = z.object({
 });
 
 const studentValidationSchema = z.object({
-  id: z.number().positive('Duplicate student Id'),
-  name: userNameValidationSchema.required(),
-  gender: z.enum(['male', 'female', 'other']),
-  dateOfBirth: z.string(),
-  email: z.string().email('Invalid email format'),
-  contactNo: z.string().min(8).max(15),
-  emergencyContactNo: z
-    .string()
-    .min(8, {
-      message: 'Emergency contact number is too short',
-    })
-    .max(14, { message: 'Emergency contact number is too long' }),
-  bloodGroup: z.enum(['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-']),
-  presentAddress: z.string(),
-  permanentAddress: z.string(),
-  guardian: guardianValidationSchema,
-  localGuardian: localGuardianValidationSchema,
-  profileImg: z.string(),
-  isActive: z.enum(['active', 'blocked']).default('active'),
+  body: z.object({
+    password: z.string().max(20),
+    student: z.object({
+      name: userNameValidationSchema.required(),
+      gender: z.enum(['male', 'female', 'other']),
+      dateOfBirth: z.date().optional(),
+      email: z.string().email('Invalid email format'),
+      contactNo: z.string().min(8).max(15),
+      emergencyContactNo: z
+        .string()
+        .min(8, {
+          message: 'Emergency contact number is too short',
+        })
+        .max(14, { message: 'Emergency contact number is too long' }),
+      bloodGroup: z.enum(['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-']),
+      presentAddress: z.string(),
+      permanentAddress: z.string(),
+      guardian: guardianValidationSchema,
+      localGuardian: localGuardianValidationSchema,
+      admissionSemester: z.string(), 
+      profileImg: z.string(),
+    }),
+  }),
 });
 
 export default studentValidationSchema;

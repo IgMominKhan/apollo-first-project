@@ -67,7 +67,7 @@ const studentSchema = new Schema<TStudent, TStudentModel, TStudentMethod>({
     },
     required: true,
   },
-  dateOfBirth: String,
+  dateOfBirth: Date,
   email: {
     type: String,
     required: true,
@@ -93,6 +93,7 @@ const studentSchema = new Schema<TStudent, TStudentModel, TStudentMethod>({
   guardian: guardianSchema,
   localGuardian: { type: localGuardianSchema, required: true },
   profileImg: String,
+  admissionSemester: Schema.Types.ObjectId,
   isDeleted: {
     type: Boolean,
     default: false,
@@ -118,9 +119,9 @@ studentSchema.methods.isUserExists = async function (id: number) {
   return await Student.findOne({ id });
 };
 
-// @ts-expect-error error
 const Student = model<TStudent, TStudentModel, TStudentMethod>(
   'Student',
-  studentSchema,
+    // @ts-expect-error error
+    studentSchema,
 );
 export default Student;

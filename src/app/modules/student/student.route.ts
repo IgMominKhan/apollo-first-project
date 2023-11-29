@@ -1,10 +1,14 @@
 import express from 'express';
-import studentController from './student.controller';
+import __studentController from './student.controller';
 
 // student router
 export const studentRoute = express.Router();
 
 // get students
-studentRoute.get('/', studentController.getStudent);
+studentRoute.get('/', __studentController.getStudent);
 
-studentRoute.get('/:id', studentController.getSingleStudent);
+// get a single student
+studentRoute.get('/:id', __studentController.getSingleStudent);
+
+// delete student by id
+studentRoute.delete('/:id', __studentController.deleteStudent);

@@ -1,6 +1,7 @@
-import {Router} from "express";
-import {studentRoute} from "../modules/student/student.route";
-import {userRoute} from "../modules/user/user.route";
+import { Router } from 'express';
+import { studentRoute } from '../modules/student/student.route';
+import { userRoute } from '../modules/user/user.route';
+import {semesterRoute} from "../modules/academicSemester/semester.route";
 
 const router: Router = Router();
 
@@ -17,7 +18,8 @@ const router: Router = Router();
 //
 // routesModule.forEach(route => router.use(route.path, route.route))
 
-router.use("/students",studentRoute)
-router.use("/users", userRoute)
+router.use('/students', studentRoute);
+router.use('/users', userRoute);
+router.use("/semesters", semesterRoute)
 
 export default router;

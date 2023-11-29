@@ -26,7 +26,7 @@ const JoiStudentSchema = Joi.object({
   id: Joi.number().required(),
   name: UserNameSchema.required(),
   gender: Joi.string().valid('male', 'female', 'other').required(),
-  dateOfBirth: Joi.string().required(),
+  dateOfBirth: Joi.required(),
   email: Joi.string().email().required(),
   contactNo: Joi.string().required(),
   emergencyContactNo: Joi.string().required(),

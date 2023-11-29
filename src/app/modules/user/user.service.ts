@@ -1,10 +1,10 @@
-// create student into database
 import { User } from './user.model';
 import { TStudent } from '../student/student.interface';
 import config from '../../config';
 import { TUser } from './user.interface';
 import Student from '../student/student.model';
 
+// create student into database
 async function createStudentIntoDB(password: string, studentData: TStudent) {
   // create a user object
   const userData: Partial<TUser> = {};
@@ -17,7 +17,7 @@ async function createStudentIntoDB(password: string, studentData: TStudent) {
   userData.role = 'student';
 
   // set manually generated id
-  userData.id = '2030100009';
+  userData.id = '2030100017';
 
   // create a user
   const result = await User.create(userData);
