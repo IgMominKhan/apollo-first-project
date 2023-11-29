@@ -1,5 +1,5 @@
-import { Router } from 'express';
-import { __userController } from './user.controller';
+import {Router} from 'express';
+import {__userController} from './user.controller';
 import validateRequest from '../../utils/validateRequest';
 import studentValidationSchema from '../student/student.validation';
 

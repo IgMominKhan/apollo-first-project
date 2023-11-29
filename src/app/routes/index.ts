@@ -1,6 +1,6 @@
-import { Router } from 'express';
-import { studentRoute } from '../modules/student/student.route';
-import { userRoute } from '../modules/user/user.route';
+import {Router} from 'express';
+import {studentRoute} from '../modules/student/student.route';
+import {userRoute} from '../modules/user/user.route';
 import {semesterRoute} from "../modules/academicSemester/semester.route";
 
 const router: Router = Router();

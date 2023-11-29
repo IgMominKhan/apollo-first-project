@@ -1,5 +1,3 @@
-import { string } from "joi";
-
 export type TSemesterNames = "Autumn" | "Summer" | "Fall";
 export type TSemesterCodes = '01' | '02' | '03';
 
@@ -21,7 +19,7 @@ export type TMonth =
 export type TAcademicSemester = {
   name: TSemesterNames;
   code: TSemesterCodes;
-  year: String;
+  year: string;
   startMonth: TMonth;
   endMonth: TMonth;
 };

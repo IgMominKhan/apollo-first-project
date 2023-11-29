@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from 'express';
+import {NextFunction, Request, Response} from 'express';
 import httpStatus from 'http-status';
 
 // eslint-disable-next-line no-unused-vars,@typescript-eslint/no-unused-vars

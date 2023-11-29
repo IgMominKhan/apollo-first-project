@@ -1,5 +1,5 @@
-import { Request, Response, NextFunction } from 'express';
-import { AnyZodObject } from 'zod';
+import {NextFunction, Request, Response} from 'express';
+import {AnyZodObject} from 'zod';
 
 export default function validateRequest(Schema: AnyZodObject) {
   return async function (req: Request, res: Response, next: NextFunction) {

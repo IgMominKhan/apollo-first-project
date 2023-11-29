@@ -1,4 +1,3 @@
-import { TStudent } from './student.interface';
 import Student from './student.model';
 
 // Get students from database

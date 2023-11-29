@@ -1,7 +1,8 @@
-import { model, Schema } from 'mongoose';
-import { TUser } from './user.interface';
+import {model, Schema} from 'mongoose';
+import {TUser} from './user.interface';
 import bcrypt from 'bcrypt';
 import config from '../../config';
+
 const userSchema = new Schema<TUser>(
   {
     id: {
@@ -19,7 +20,7 @@ const userSchema = new Schema<TUser>(
     },
     role: {
       type: String,
-      enum: ['student', 'teacher', 'admin'],
+      enum: ['student', 'facalty', 'admin'],
     },
     status: {
       type: String,

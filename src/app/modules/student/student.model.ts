@@ -1,19 +1,12 @@
 // import validator from 'validator';
-import { model, Schema } from 'mongoose';
-import {
-  TGuardian,
-  TLocalGuardian,
-  TStudent,
-  TStudentMethod,
-  TStudentModel,
-  TUserName,
-} from './student.interface';
+import {model, Schema} from "mongoose";
+import {TGuardian, TLocalGuardian, TStudent, TStudentMethod, TStudentModel, TUserName,} from "./student.interface";
 
 export const userNameSchema = new Schema<TUserName>(
   {
     firstName: {
       type: String,
-      required: [true, 'firstName is required'],
+      required: [true, "firstName is required"],
     },
     middleName: String,
     lastName: String,
@@ -46,14 +39,14 @@ const localGuardianSchema = new Schema<TLocalGuardian>(
 const studentSchema = new Schema<TStudent, TStudentModel, TStudentMethod>({
   id: {
     type: Number,
-    required: [true, 'Duplicate student Id'],
+    required: [true, "Duplicate student Id"],
     unique: true,
   },
   user: {
     type: Schema.Types.ObjectId,
     unique: true,
-    required: [true, 'User id is required'],
-    ref: 'User',
+    required: [true, "User id is required"],
+    ref: "User",
   },
   name: {
     type: userNameSchema,
@@ -62,8 +55,8 @@ const studentSchema = new Schema<TStudent, TStudentModel, TStudentMethod>({
   gender: {
     type: String,
     enum: {
-      values: ['male', 'female', 'other'],
-      message: '{VALUE} is not a valid gender',
+      values: ["male", "female", "other"],
+      message: "{VALUE} is not a valid gender",
     },
     required: true,
   },
@@ -71,6 +64,7 @@ const studentSchema = new Schema<TStudent, TStudentModel, TStudentMethod>({
   email: {
     type: String,
     required: true,
+    unique: true,
   },
   contactNo: {
     type: String,
@@ -84,8 +78,8 @@ const studentSchema = new Schema<TStudent, TStudentModel, TStudentMethod>({
   bloodGroup: {
     type: String,
     enum: {
-      values: ['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-'],
-      message: '{VALUE} is not a valid blood group',
+      values: ["A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"],
+      message: "{VALUE} is not a valid blood group",
     },
   },
   presentAddress: String,
@@ -93,7 +87,10 @@ const studentSchema = new Schema<TStudent, TStudentModel, TStudentMethod>({
   guardian: guardianSchema,
   localGuardian: { type: localGuardianSchema, required: true },
   profileImg: String,
-  admissionSemester: Schema.Types.ObjectId,
+  admissionSemester: {
+    type: Schema.Types.ObjectId,
+    ref: "AcademicSemester",
+  },
   isDeleted: {
     type: Boolean,
     default: false,
@@ -120,8 +117,8 @@ studentSchema.methods.isUserExists = async function (id: number) {
 };
 
 const Student = model<TStudent, TStudentModel, TStudentMethod>(
-  'Student',
-    // @ts-expect-error error
-    studentSchema,
+  "Student",
+  // @ts-expect-error error
+  studentSchema,
 );
 export default Student;

@@ -1,4 +1,4 @@
-import Joi, { defaults } from 'joi';
+import Joi from 'joi';
 
 const UserNameSchema = Joi.object({
   firstName: Joi.string().required(),

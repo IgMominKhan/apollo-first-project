@@ -1,7 +1,7 @@
-import { Router } from "express";
+import {Router} from "express";
 import __semesterController from "./semester.controller";
 import validateRequest from "../../utils/validateRequest";
-import { semesterValidationSchema as Validation } from "./semester.validation";
+import {semesterValidationSchema as Validation} from "./semester.validation";
 
 export const semesterRoute: Router = Router();
 

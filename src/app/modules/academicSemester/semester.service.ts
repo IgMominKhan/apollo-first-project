@@ -1,7 +1,7 @@
 // create a new semester
-import { AcademicSemesterModel } from "./semester.model";
-import { TAcademicSemester } from "./semester.interface";
-import { semesterNameCodeMapper } from "./semester.constant";
+import {AcademicSemesterModel} from "./semester.model";
+import {TAcademicSemester} from "./semester.interface";
+import {semesterNameCodeMapper} from "./semester.constant";
 
 // get semesters from DB
 async function getSemestersFromDB() {
