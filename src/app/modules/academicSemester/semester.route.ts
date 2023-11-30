@@ -11,7 +11,7 @@ semesterRoute.get("/", __semesterController.getSemesters);
 // get single semesters
 semesterRoute.get("/:_id", __semesterController.getSemester);
 
-// create semeser
+// create semester
 semesterRoute.post(
   "/create-semester",
   validateRequest(Validation.createSemesterValidationSchema),
