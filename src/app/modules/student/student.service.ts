@@ -1,14 +1,28 @@
-import Student from './student.model';
+import Student from "./student.model";
 
 // Get students from database
 async function getStudentsFromDB() {
-  const result = await Student.find();
+  const result = await Student.find().populate("admissionSemester").populate(
+    "academicDepartment",
+  ).populate({
+    path: "academicDepartment",
+    populate: {
+      path: "academicFaculty",
+    },
+  });
 
   return result;
 }
 
 async function getSingleStudentFromDB(id: number) {
-  return Student.findOne({ id });
+  return Student.findOne({ id }).populate("admissionSemester").populate(
+    {
+      path: "academicDepartment",
+      populate: {
+        path: "academicFaculty",
+      },
+    },
+  );
 }
 
 export default {

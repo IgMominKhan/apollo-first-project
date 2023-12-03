@@ -1,6 +1,13 @@
 // import validator from 'validator';
-import {model, Schema} from "mongoose";
-import {TGuardian, TLocalGuardian, TStudent, TStudentMethod, TStudentModel, TUserName,} from "./student.interface";
+import { model, Schema } from "mongoose";
+import {
+  TGuardian,
+  TLocalGuardian,
+  TStudent,
+  TStudentMethod,
+  TStudentModel,
+  TUserName,
+} from "./student.interface";
 
 export const userNameSchema = new Schema<TUserName>(
   {
@@ -91,6 +98,10 @@ const studentSchema = new Schema<TStudent, TStudentModel, TStudentMethod>({
     type: Schema.Types.ObjectId,
     ref: "AcademicSemester",
   },
+  academicDepartment: {
+    type: Schema.Types.ObjectId,
+    ref: "AcademicDepartment",
+  },
   isDeleted: {
     type: Boolean,
     default: false,
@@ -108,6 +119,7 @@ const studentSchema = new Schema<TStudent, TStudentModel, TStudentMethod>({
 
 // @ts-expect-error error
 studentSchema.methods.fullName = async function () {
+  // @ts-expect-error error
   return `${this.name.firstName} ${this.name?.middleName} ${this.name.lastName}`;
 };
 
