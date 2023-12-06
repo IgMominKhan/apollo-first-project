@@ -1,26 +1,23 @@
-import { TAcademicFaculty } from "./academicF.interface";
-import { AcademicFaculty } from "./academicF.model";
+import { TAcademicFaculty } from './academicF.interface';
+import { AcademicFaculty } from './academicF.model';
 
 // get academic faculties from db
-async function getAcademicFsFromDB() {
+function getAcademicFsFromDB() {
   return AcademicFaculty.find();
 }
 
 // get academic faculty from db
-async function getAcademicFFromDB(_id: string) {
+function getAcademicFFromDB(_id: string) {
   return AcademicFaculty.findOne({ _id });
 }
 
 // create academic faculty
-async function createAcademicFIntoDB(payload: TAcademicFaculty) {
+function createAcademicFIntoDB(payload: TAcademicFaculty) {
   return AcademicFaculty.create(payload);
 }
 
 // update academic faculty
-async function updateAcademicFIntoDB(
-  _id: string,
-  payload: TAcademicFaculty,
-) {
+function updateAcademicFIntoDB(_id: string, payload: TAcademicFaculty) {
   return AcademicFaculty.findByIdAndUpdate({ _id }, payload, {
     new: true,
   });

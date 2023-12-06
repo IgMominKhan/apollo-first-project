@@ -1,11 +1,11 @@
-import { z } from "zod";
+import { z } from 'zod';
 
 const create = z.object({
   body: z.object({
     name: z.string(),
     academicFaculty: z.string({
-      invalid_type_error: "AcademicFaculty must be string",
-      required_error: "AcademicFaculty is required",
+      invalid_type_error: 'AcademicFaculty must be string',
+      required_error: 'AcademicFaculty is required',
     }),
   }),
 });
@@ -13,10 +13,12 @@ const create = z.object({
 const update = z.object({
   body: z.object({
     name: z.string().optional(),
-    academicFaculty: z.string({
-      invalid_type_error: "AcademicFaculty must be string",
-      required_error: "AcademicFaculty is required",
-    }).optional(),
+    academicFaculty: z
+      .string({
+        invalid_type_error: 'AcademicFaculty must be string',
+        required_error: 'AcademicFaculty is required',
+      })
+      .optional(),
   }),
 });
 

@@ -1,14 +1,14 @@
-import { TAcademicDepartment } from "./academicD.interface";
-import { AcademicDepartment } from "./academicD.model";
+import { TAcademicDepartment } from './academicD.interface';
+import { AcademicDepartment } from './academicD.model';
 
 // get all department data
 function getDepartmentsFromDB() {
-  return AcademicDepartment.find().populate("academicFaculty");
+  return AcademicDepartment.find().populate('academicFaculty');
 }
 
 // get single department
 function getDepartmentFromDB(id: string) {
-  return AcademicDepartment.findById(id).populate("academicFaculty");
+  return AcademicDepartment.findById(id).populate('academicFaculty');
 }
 
 // create AcademicDepartment

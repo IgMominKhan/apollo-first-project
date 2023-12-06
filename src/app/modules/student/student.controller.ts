@@ -1,4 +1,4 @@
-import studentService from './student.service';
+import __studentService from './student.service';
 import sendResponse from '../../utils/sendResponse';
 import httpStatus from 'http-status';
 import catchAsync from '../../utils/catchAsync';
@@ -8,7 +8,7 @@ import Student from './student.model';
 // path: /api/v1/students
 // get students
 const getStudent = catchAsync(async (req, res) => {
-  const students = await studentService.getStudentsFromDB();
+  const students = await __studentService.getStudentsFromDB();
 
   sendResponse(res, {
     status: httpStatus.OK,
@@ -22,14 +22,14 @@ const getStudent = catchAsync(async (req, res) => {
 // path : /api/v1/student/:id
 // get student by id
 const getSingleStudent = catchAsync(async (req, res) => {
-  const data = await studentService.getSingleStudentFromDB(
+  const data = await __studentService.getSingleStudentFromDB(
     Number(req.params?.id),
   );
 
   sendResponse(res, {
     status: httpStatus.OK,
     success: true,
-    message: 'Student data retrieve data successfully',
+    message: 'Student retrieve data successfully',
     data: data,
   });
 });
@@ -39,7 +39,7 @@ const getSingleStudent = catchAsync(async (req, res) => {
 // delete student by id
 const deleteStudent = catchAsync(async (req, res) => {
   const { id } = req.params;
-  const data = await Student.deleteOne({ id });
+  const data = await __studentService.deleteStudentFromDB(id);
 
   sendResponse(res, {
     status: httpStatus.OK,
@@ -49,4 +49,19 @@ const deleteStudent = catchAsync(async (req, res) => {
   });
 });
 
-export default { getStudent, getSingleStudent, deleteStudent };
+// method: PUT
+// path: /api/v1/student/:id
+// update student
+const updateStudent = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  const { student } = req.body;
+
+  const data = await __studentService.updateStudentIntoDB(id, student);
+  sendResponse(res, {
+    status: httpStatus.OK,
+    success: true,
+    message: 'Student updated successfully',
+    data,
+  });
+});
+export default { getStudent, getSingleStudent, deleteStudent, updateStudent };

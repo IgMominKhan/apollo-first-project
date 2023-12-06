@@ -1,7 +1,7 @@
 // create a new semester
-import {AcademicSemesterModel} from "./semester.model";
-import {TAcademicSemester} from "./semester.interface";
-import {semesterNameCodeMapper} from "./semester.constant";
+import { AcademicSemesterModel } from './semester.model';
+import { TAcademicSemester } from './semester.interface';
+import { semesterNameCodeMapper } from './semester.constant';
 
 // get semesters from DB
 async function getSemestersFromDB() {
@@ -10,7 +10,7 @@ async function getSemestersFromDB() {
 }
 
 // get semesters from DB
-async function getSemesterFromDB(_id) {
+async function getSemesterFromDB(_id: string) {
   const result = await AcademicSemesterModel.findOne({ _id });
   return result;
 }
@@ -25,9 +25,13 @@ async function createSemesterInto(payload: TAcademicSemester) {
 }
 
 // update semester
-async function updateSemesterIntoDB(_id, payload: Partial<TAcademicSemester>) {
+async function updateSemesterIntoDB(
+  _id: string,
+  payload: Partial<TAcademicSemester>,
+) {
   if (
-    payload.code && payload.name &&
+    payload.code &&
+    payload.name &&
     semesterNameCodeMapper[payload.name] !== payload.code
   ) {
     throw new Error("Semeser name and code doesn't match");
@@ -42,4 +46,9 @@ async function updateSemesterIntoDB(_id, payload: Partial<TAcademicSemester>) {
   return result;
 }
 
-export default { getSemestersFromDB, getSemesterFromDB, createSemesterInto, updateSemesterIntoDB };
+export default {
+  getSemestersFromDB,
+  getSemesterFromDB,
+  createSemesterInto,
+  updateSemesterIntoDB,
+};

@@ -1,5 +1,4 @@
-// import validator from 'validator';
-import { model, Schema } from "mongoose";
+import { model, Schema } from 'mongoose';
 import {
   TGuardian,
   TLocalGuardian,
@@ -7,13 +6,13 @@ import {
   TStudentMethod,
   TStudentModel,
   TUserName,
-} from "./student.interface";
+} from './student.interface';
 
 export const userNameSchema = new Schema<TUserName>(
   {
     firstName: {
       type: String,
-      required: [true, "firstName is required"],
+      required: [true, 'firstName is required'],
     },
     middleName: String,
     lastName: String,
@@ -44,16 +43,17 @@ const localGuardianSchema = new Schema<TLocalGuardian>(
 );
 
 const studentSchema = new Schema<TStudent, TStudentModel, TStudentMethod>({
+  // @ts-expect-error error
   id: {
-    type: Number,
-    required: [true, "Duplicate student Id"],
+    type: String,
+    required: [true, 'Duplicate student Id'],
     unique: true,
   },
   user: {
     type: Schema.Types.ObjectId,
     unique: true,
-    required: [true, "User id is required"],
-    ref: "User",
+    required: [true, 'User id is required'],
+    ref: 'User',
   },
   name: {
     type: userNameSchema,
@@ -62,8 +62,8 @@ const studentSchema = new Schema<TStudent, TStudentModel, TStudentMethod>({
   gender: {
     type: String,
     enum: {
-      values: ["male", "female", "other"],
-      message: "{VALUE} is not a valid gender",
+      values: ['male', 'female', 'other'],
+      message: '{VALUE} is not a valid gender',
     },
     required: true,
   },
@@ -85,8 +85,8 @@ const studentSchema = new Schema<TStudent, TStudentModel, TStudentMethod>({
   bloodGroup: {
     type: String,
     enum: {
-      values: ["A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"],
-      message: "{VALUE} is not a valid blood group",
+      values: ['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-'],
+      message: '{VALUE} is not a valid blood group',
     },
   },
   presentAddress: String,
@@ -96,11 +96,11 @@ const studentSchema = new Schema<TStudent, TStudentModel, TStudentMethod>({
   profileImg: String,
   admissionSemester: {
     type: Schema.Types.ObjectId,
-    ref: "AcademicSemester",
+    ref: 'AcademicSemester',
   },
   academicDepartment: {
     type: Schema.Types.ObjectId,
-    ref: "AcademicDepartment",
+    ref: 'AcademicDepartment',
   },
   isDeleted: {
     type: Boolean,
@@ -117,19 +117,17 @@ const studentSchema = new Schema<TStudent, TStudentModel, TStudentMethod>({
 //   return result;
 // });
 
-// @ts-expect-error error
-studentSchema.methods.fullName = async function () {
-  // @ts-expect-error error
-  return `${this.name.firstName} ${this.name?.middleName} ${this.name.lastName}`;
-};
-
+// studentSchema.methods.fullName = async function () {
+//   return `${this.name.firstName} ${this.name?.middleName} ${this.name.lastName}`;
+// };
+//
 // @ts-expect-error error
 studentSchema.methods.isUserExists = async function (id: number) {
   return await Student.findOne({ id });
 };
 
 const Student = model<TStudent, TStudentModel, TStudentMethod>(
-  "Student",
+  'Student',
   // @ts-expect-error error
   studentSchema,
 );

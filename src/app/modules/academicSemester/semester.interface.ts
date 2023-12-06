@@ -1,6 +1,5 @@
-export type TSemesterNames = "Autumn" | "Summer" | "Fall";
+export type TSemesterNames = 'Autumn' | 'Summer' | 'Fall';
 export type TSemesterCodes = '01' | '02' | '03';
-
 
 export type TMonth =
   | 'January'
@@ -25,5 +24,5 @@ export type TAcademicSemester = {
 };
 
 export type TSemesterNameCodeMapper = {
-  [key:string]: string
-}
+  [key: string]: string;
+};

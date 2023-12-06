@@ -1,4 +1,4 @@
-import {__userService} from './user.service';
+import { __userService } from './user.service';
 import sendResponse from '../../utils/sendResponse';
 import httpStatus from 'http-status';
 import catchAsync from '../../utils/catchAsync';
